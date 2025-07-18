@@ -1,1 +1,16 @@
+# Disable directory listing
+Options -Indexes
 
+# Protect credentials directory
+<FilesMatch "^users\.txt$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Video file protection
+<FilesMatch "\.(mp4|avi|mov|mkv)$">
+    SetEnvIf Referer "viral-video\.com" local_ref
+    <IfModule mod_authz_core.c>
+        Require env local_ref
+    </IfModule>
+</FilesMatch>
