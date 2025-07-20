@@ -1,14 +1,14 @@
-/* Global Styles */
+/* General Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
   background-color: #f0f2f5;
-  color: #1c1e21;
+  color: #333;
 }
 
 /* Header Styles */
@@ -16,12 +16,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: white;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px 5%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.header-left, .header-right {
+.logo-container {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -32,169 +32,191 @@ header {
   height: 40px;
 }
 
-h1 {
-  font-size: 24px;
-  color: #1877f2;
-}
-
-/* Login Page Styles */
-.login-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f0f2f5;
-}
-
-.login-container {
-  text-align: center;
-  width: 400px;
-  padding: 20px;
-}
-
-.login-form {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
-}
-
-.login-form input {
-  width: 100%;
-  padding: 14px 16px;
-  margin: 8px 0;
-  border: 1px solid #dddfe2;
-  border-radius: 6px;
-  font-size: 17px;
-}
-
-.login-form button {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
+.auth-buttons .login-btn {
   background-color: #1877f2;
   color: white;
   border: none;
+  padding: 8px 16px;
   border-radius: 6px;
-  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.login-form button:hover {
-  background-color: #166fe5;
-}
-
-.forgot-password {
-  display: block;
-  color: #1877f2;
+/* Banner Styles */
+.banner {
+  background-color: #1877f2;
+  color: white;
+  padding: 15px;
+  text-align: center;
   font-size: 14px;
-  margin: 10px 0;
+}
+
+/* Login Page Styles */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.login-box {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dddfe2;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.links {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.links a {
+  color: #1877f2;
   text-decoration: none;
-}
-
-.forgot-password:hover {
-  text-decoration: underline;
-}
-
-.create-account {
-  background-color: #42b72a !important;
-  width: 60% !important;
-  margin: 10px auto !important;
-}
-
-.create-account:hover {
-  background-color: #36a420 !important;
+  display: block;
+  margin: 5px 0;
 }
 
 .meta-footer {
   margin-top: 20px;
-  font-size: 14px;
-  color: #737373;
+  font-size: 12px;
+  color: #65676b;
 }
 
-/* Video Page Styles */
-#videoContainer {
+/* Video Grid Styles */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
   padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 .video-item {
-  background-color: white;
+  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
   overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.video-header {
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
+.video-item video {
+  width: 100%;
+  display: block;
+}
+
+.placeholder {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  color: #65676b;
+}
+
+.placeholder i {
+  font-size: 50px;
+  margin-bottom: 20px;
+  color: #1877f2;
+}
+
+/* Admin Panel Styles */
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.upload-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.upload-btn {
+  background-color: #42b72a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
   align-items: center;
 }
 
-.upload-date {
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  margin-top: 20px;
   font-size: 14px;
   color: #65676b;
 }
 
-video {
-  width: 100%;
-  background-color: black;
-}
-
-.video-actions {
-  padding: 10px 15px;
-  display: flex;
-  gap: 10px;
-}
-
-.video-actions button {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.like-btn {
-  background-color: #e4e6eb;
-}
-
-.share-btn {
-  background-color: #1877f2;
-  color: white;
-}
-
-/* Admin Page Styles */
-.admin-page header {
-  justify-content: center;
-  gap: 20px;
-}
-
-.upload-section, .videos-section, .users-section {
-  background-color: white;
-  padding: 20px;
-  margin: 20px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.credential-item {
-  padding: 10px 0;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-  .login-container {
-    width: 90%;
-  }
-  
-  header {
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: 1fr;
   }
   }
