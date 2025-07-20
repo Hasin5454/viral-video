@@ -1,1 +1,11 @@
-
+<!DOCTYPE html>
+<html>
+<body>
+  <!-- SVG কোড পেস্ট করুন -->
+  <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="90" stroke="black" stroke-width="4" fill="transparent"/>
+    <path d="M 70 100 Q 50 50 100 50 T 130 100 Q 150 150 100 150 T 70 100 Z" fill="black"/>
+    <path d="M 130 100 Q 150 50 100 50 T 70 100 Q 50 150 100 150 T 130 100 Z" fill="black"/>
+  </svg>
+</body>
+</html>
