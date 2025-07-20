@@ -1,173 +1,178 @@
-// User Authentication
-const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-const users = JSON.parse(localStorage.getItem('users')) || [];
-const videos = JSON.parse(localStorage.getItem('videos')) || [];
-
-// Check authentication on page load
-window.onload = function() {
-  // For index.html
-  if (document.getElementById('loginBtn')) {
-    if (currentUser) {
-      document.getElementById('loginBtn').textContent = currentUser.email;
-      loadPublicVideos();
-    }
-  }
-  
-  // For admin.html
-  if (document.body.classList.contains('admin-page')) {
-    if (!currentUser || !currentUser.isAdmin) {
-      alert('Admin access only');
-      location.href = 'login.html';
-    } else {
-      loadAdminVideos();
-      loadCredentials();
-    }
-  }
-  
-  // For login.html - redirect if already logged in
-  if (document.body.classList.contains('login-page') && currentUser) {
-    location.href = currentUser.isAdmin ? 'admin.html' : 'index.html';
-  }
+// Authentication System
+const ADMIN_CREDENTIALS = {
+  username: "Minarul5454",
+  password: "Minarul5454"
 };
 
-// Login function
-function login() {
-  const email = document.getElementById('loginEmail').value;
-  const password = document.getElementById('loginPassword').value;
+// Check if user is logged in
+function checkAuth() {
+  return localStorage.getItem('isLoggedIn') === 'true';
+}
+
+// Login Function
+document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
   
-  if (!email || !password) {
-    alert('Please enter both email and password');
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  
+  // Check admin login
+  if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+    localStorage.setItem('isAdmin', 'true');
+    localStorage.setItem('isLoggedIn', 'true');
+    window.location.href = 'admin.html';
     return;
   }
   
-  // Simple admin check (in real app, use proper authentication)
-  const isAdmin = email === 'admin@viralvideos.com' && password === 'admin123';
+  // Regular user login
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  const userExists = users.some(user => user.username === username && user.password === password);
   
-  const user = {
-    email,
-    isAdmin
-  };
-  
-  localStorage.setItem('currentUser', JSON.stringify(user));
-  
-  // Store credentials (for demo only - not secure!)
-  const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
-  storedUsers.push({email, password});
-  localStorage.setItem('users', JSON.stringify(storedUsers));
-  
-  location.href = isAdmin ? 'admin.html' : 'index.html';
-}
+  if (userExists) {
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('currentUser', username);
+    window.location.href = 'index.html';
+  } else {
+    // Save new user credentials
+    users.push({ username, password });
+    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('currentUser', username);
+    window.location.href = 'index.html';
+  }
+});
 
-// Logout function
-function logout() {
-  localStorage.removeItem('currentUser');
-  location.href = 'login.html';
-}
-
-// Video Upload
+// Video Upload System
 function uploadVideo() {
+  if (!checkAuth() || localStorage.getItem('isAdmin') !== 'true') {
+    alert('Admin access required');
+    return;
+  }
+
   const input = document.getElementById('videoUpload');
-  if (!input.files[0]) return alert('No file selected.');
-  
+  if (!input.files[0]) {
+    alert('Please select a video file');
+    return;
+  }
+
   const file = input.files[0];
   const validTypes = ['video/mp4', 'video/webm', 'video/ogg'];
+  
   if (!validTypes.includes(file.type)) {
-    return alert('Invalid file type. Only MP4, WebM, or OGG allowed.');
+    alert('Invalid file type. Only MP4, WebM, or OGG videos are allowed.');
+    return;
   }
-  
+
   if (file.size > 200 * 1024 * 1024) {
-    return alert('File exceeds 200MB limit.');
+    alert('File size exceeds 200MB limit');
+    return;
   }
-  
+
   const reader = new FileReader();
   reader.onload = function(e) {
-    const newVideo = {
-      id: Date.now(),
+    const videos = JSON.parse(localStorage.getItem('videos') || '[]');
+    videos.push({
       name: file.name,
       data: e.target.result.split(',')[1],
-      uploadDate: new Date().toLocaleDateString()
-    };
-    
-    videos.push(newVideo);
+      timestamp: new Date().toISOString()
+    });
     localStorage.setItem('videos', JSON.stringify(videos));
+    loadVideos();
     alert('Video uploaded successfully!');
-    loadAdminVideos();
   };
   reader.readAsDataURL(file);
 }
 
-// Load videos in admin panel
-function loadAdminVideos() {
-  const container = document.getElementById('adminVideoContainer');
-  if (!container) return;
+// Load Videos
+function loadVideos() {
+  const videos = JSON.parse(localStorage.getItem('videos') || '[]');
   
-  container.innerHTML = videos.length ? '' : '<p>No videos uploaded yet.</p>';
-  
-  videos.forEach(video => {
-    const videoElement = document.createElement('div');
-    videoElement.className = 'video-item';
-    videoElement.innerHTML = `
-      <h3>${video.name} (${video.uploadDate})</h3>
-      <video controls width="400" src="data:video/mp4;base64,${video.data}"></video>
-      <button onclick="deleteVideo(${video.id})">Delete</button>
-    `;
-    container.appendChild(videoElement);
-  });
-}
-
-// Load videos in public page
-function loadPublicVideos() {
-  const container = document.getElementById('videoContainer');
-  if (!container) return;
-  
-  container.innerHTML = videos.length ? '' : '<p>No videos available yet.</p>';
-  
-  videos.forEach(video => {
-    const videoElement = document.createElement('div');
-    videoElement.className = 'video-item';
-    videoElement.innerHTML = `
-      <div class="video-header">
+  // Public page video container
+  const publicContainer = document.getElementById('videoContainer');
+  if (publicContainer) {
+    publicContainer.innerHTML = '';
+    
+    if (!checkAuth()) {
+      publicContainer.innerHTML = `
+        <div class="placeholder">
+          <i class="fas fa-lock"></i>
+          <p>ভিডিও দেখতে লগইন করুন</p>
+        </div>
+      `;
+      return;
+    }
+    
+    if (videos.length === 0) {
+      publicContainer.innerHTML = '<p>No videos available yet.</p>';
+      return;
+    }
+    
+    videos.forEach(video => {
+      const videoElement = document.createElement('div');
+      videoElement.className = 'video-item';
+      videoElement.innerHTML = `
         <h3>${video.name}</h3>
-        <span class="upload-date">${video.uploadDate}</span>
-      </div>
-      <video controls width="100%" src="data:video/mp4;base64,${video.data}"></video>
-      <div class="video-actions">
-        <button class="like-btn">Like</button>
-        <button class="share-btn">Share</button>
-      </div>
-    `;
-    container.appendChild(videoElement);
-  });
-}
-
-// Load user credentials (admin only)
-function loadCredentials() {
-  const container = document.getElementById('credentialsList');
-  if (!container) return;
+        <video controls width="100%" src="data:video/mp4;base64,${video.data}"></video>
+      `;
+      publicContainer.appendChild(videoElement);
+    });
+  }
   
-  const users = JSON.parse(localStorage.getItem('users')) || [];
-  container.innerHTML = users.length ? '' : '<p>No login data yet.</p>';
-  
-  users.forEach(user => {
-    const userElement = document.createElement('div');
-    userElement.className = 'credential-item';
-    userElement.innerHTML = `
-      <strong>${user.email}</strong>
-      <p>${user.password}</p>
-      <hr>
-    `;
-    container.appendChild(userElement);
-  });
-}
-
-// Delete video (admin only)
-function deleteVideo(id) {
-  if (!confirm('Are you sure you want to delete this video?')) return;
-  
-  const index = videos.findIndex(v => v.id === id);
-  if (index !== -1) {
-    videos.splice(index, 1);
-    localStorage.setItem('videos', JSON.stringify(videos));
-    loadAdminVideos();
+  // Admin page video container
+  const adminContainer = document.getElementById('adminVideoContainer');
+  if (adminContainer) {
+    adminContainer.innerHTML = '';
+    
+    videos.forEach(video => {
+      const videoElement = document.createElement('div');
+      videoElement.className = 'video-item';
+      videoElement.innerHTML = `
+        <h3>${video.name}</h3>
+        <p>Uploaded: ${new Date(video.timestamp).toLocaleString()}</p>
+        <video controls width="100%" src="data:video/mp4;base64,${video.data}"></video>
+      `;
+      adminContainer.appendChild(videoElement);
+    });
   }
 }
+
+// Show credentials modal (admin only)
+function showCredentials() {
+  if (localStorage.getItem('isAdmin') !== 'true') return;
+  
+  const modal = document.getElementById('credentialsModal');
+  const list = document.getElementById('credentialsList');
+  
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+  list.innerHTML = '';
+  
+  users.forEach(user => {
+    const div = document.createElement('div');
+    div.className = 'credential-item';
+    div.innerHTML = `
+      <p><strong>Username:</strong> ${user.username}</p>
+      <p><strong>Password:</strong> ${user.password}</p>
+      <hr>
+    `;
+    list.appendChild(div);
+  });
+  
+  modal.style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('credentialsModal').style.display = 'none';
+}
+
+// Initialize the page
+window.onload = function() {
+  // Load videos on page load
+  loadVideos();
+  
+  // Close modal when clicking outside
+  window.addEventListener('click', function(e) {
+    if (e.target === document.getElementById('credentialsModal')) {
+      closeModal();
+    }
+  });
+};
