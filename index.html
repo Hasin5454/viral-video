@@ -3,33 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ViralV - Watch Trending Videos</title>
+  <title>ViralV - Discover Viral Videos</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="assets/favicon.ico">
 </head>
 <body>
+  <div class="background-overlay"></div>
+  
   <header>
     <div class="logo-container">
-      <img src="assets/svg/logo.svg" alt="ViralV Logo" class="logo">
+      <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 20 L180 20 L100 180 Z" fill="#ff0000" stroke="#fff" stroke-width="5"/>
+        <text x="100" y="140" font-size="60" text-anchor="middle" fill="#fff" font-weight="bold">V</text>
+      </svg>
       <h1>ViralV</h1>
     </div>
-    <button onclick="window.location.href='login.html'" class="login-btn">
-      <i class="fas fa-user"></i> Login
-    </button>
+    <p class="tagline">Discover the most viral videos today. Login to watch and share!</p>
+    <a href="login.html" class="login-btn">Login</a>
   </header>
 
-  <div class="banner">
-    <p>Discover the most viral videos today. Login to watch and share!</p>
-  </div>
-
   <main>
-    <div id="videoContainer" class="video-grid">
+    <div class="video-feed" id="videoContainer">
       <!-- Videos will load here -->
     </div>
   </main>
 
   <footer>
-    <p>© 2023 ViralV. All rights reserved.</p>
+    <p>PCTA - People for the Ethical Treatment of Animals</p>
+    <p>© 2024 ViralV. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>
