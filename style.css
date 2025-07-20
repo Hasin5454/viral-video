@@ -26,4 +26,15 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+  .logo {
+  margin-right: 20px;
+  vertical-align: middle;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+}
 }
