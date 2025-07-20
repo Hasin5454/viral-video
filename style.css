@@ -1,40 +1,200 @@
-body {
-  font-family: sans-serif;
+/* Global Styles */
+* {
   margin: 0;
-  padding: 20px;
-  background: #f4f4f4;
-}
-header {
-  text-align: center;
-}
-.logo {
-  width: 80px;
-}
-.login-box {
-  max-width: 300px;
-  margin: 100px auto;
-}
-input {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-}
-button {
-  padding: 10px;
-  background: #1877f2;
-  color: white;
-  border: none;
-  cursor: pointer;
-  .logo {
-  margin-right: 20px;
-  vertical-align: middle;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
 
+body {
+  background-color: #f0f2f5;
+  color: #1c1e21;
+}
+
+/* Header Styles */
 header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+h1 {
+  font-size: 24px;
+  color: #1877f2;
+}
+
+/* Login Page Styles */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.login-container {
+  text-align: center;
+  width: 400px;
   padding: 20px;
-  background-color: #f8f8f8;
 }
+
+.login-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
 }
+
+.login-form input {
+  width: 100%;
+  padding: 14px 16px;
+  margin: 8px 0;
+  border: 1px solid #dddfe2;
+  border-radius: 6px;
+  font-size: 17px;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #166fe5;
+}
+
+.forgot-password {
+  display: block;
+  color: #1877f2;
+  font-size: 14px;
+  margin: 10px 0;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.create-account {
+  background-color: #42b72a !important;
+  width: 60% !important;
+  margin: 10px auto !important;
+}
+
+.create-account:hover {
+  background-color: #36a420 !important;
+}
+
+.meta-footer {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #737373;
+}
+
+/* Video Page Styles */
+#videoContainer {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.video-item {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.video-header {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upload-date {
+  font-size: 14px;
+  color: #65676b;
+}
+
+video {
+  width: 100%;
+  background-color: black;
+}
+
+.video-actions {
+  padding: 10px 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.video-actions button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.like-btn {
+  background-color: #e4e6eb;
+}
+
+.share-btn {
+  background-color: #1877f2;
+  color: white;
+}
+
+/* Admin Page Styles */
+.admin-page header {
+  justify-content: center;
+  gap: 20px;
+}
+
+.upload-section, .videos-section, .users-section {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.credential-item {
+  padding: 10px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .login-container {
+    width: 90%;
+  }
+  
+  header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+  }
