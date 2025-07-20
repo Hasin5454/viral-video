@@ -3,33 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+  <title>Admin Panel - Viral Videos</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="admin-page">
-  <header>
-    <h1>Admin Dashboard</h1>
-    <button onclick="logout()">Log Out</button>
-  </header>
+<body>
+  <div class="admin-container">
+    <header>
+      <div class="logo-container">
+        <img src="../assets/svg/logo.svg" alt="Viral Videos Logo" class="logo">
+        <h1>Admin Dashboard</h1>
+      </div>
+      <div class="admin-menu">
+        <button onclick="showCredentials()"><i class="fas fa-ellipsis-v"></i></button>
+      </div>
+    </header>
 
-  <main>
-    <section class="upload-section">
-      <h2>Upload Video</h2>
-      <input type="file" id="videoUpload" accept="video/*">
-      <button onclick="uploadVideo()">Upload Video</button>
-    </section>
+    <div id="credentialsModal" class="modal">
+      <div class="modal-content">
+        <h3>Saved Credentials</h3>
+        <div id="credentialsList"></div>
+        <button onclick="closeModal()">Close</button>
+      </div>
+    </div>
 
-    <section class="videos-section">
-      <h2>Uploaded Videos</h2>
-      <div id="adminVideoContainer"></div>
-    </section>
+    <main>
+      <section class="upload-section">
+        <h2>Upload Video</h2>
+        <input type="file" id="videoUpload" accept="video/*">
+        <button onclick="uploadVideo()" class="upload-btn">Upload Video</button>
+      </section>
 
-    <section class="users-section">
-      <h2>User Login Data</h2>
-      <div id="credentialsList"></div>
-    </section>
-  </main>
+      <section class="videos-section">
+        <h2>Uploaded Videos</h2>
+        <div id="adminVideoContainer" class="video-grid"></div>
+      </section>
+    </main>
+  </div>
 
-  <script src="script.js"></script>
+  <script src="../script.js"></script>
 </body>
 </html>
