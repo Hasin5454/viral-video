@@ -3,32 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | Viral Videos</title>
+  <title>Login - Viral Videos</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="login-page">
+<body>
   <div class="login-container">
-    <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="100" cy="100" r="90" stroke="#1877f2" stroke-width="4" fill="transparent"/>
-      <path d="M 70 100 Q 50 50 100 50 T 130 100 Q 150 150 100 150 T 70 100 Z" fill="#1877f2"/>
-      <path d="M 130 100 Q 150 50 100 50 T 70 100 Q 50 150 100 150 T 130 100 Z" fill="#1877f2"/>
-    </svg>
-    
-    <div class="login-form">
-      <h1>Log in to Viral Videos</h1>
-      <input type="text" placeholder="Email address or phone number" id="loginEmail">
-      <input type="password" placeholder="Password" id="loginPassword">
-      <button onclick="login()">Log In</button>
-      <a href="#" class="forgot-password">Forgotten password?</a>
-      <hr>
-      <button class="create-account" onclick="location.href='index.html'">Create New Account</button>
+    <div class="login-box">
+      <div class="logo-container">
+        <img src="assets/svg/logo.svg" alt="Viral Videos Logo" class="logo">
+        <h2>Viral Videos</h2>
+      </div>
+
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="username">Mobile number or email address</label>
+          <input type="text" id="username" required>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required>
+        </div>
+
+        <button type="submit" class="login-btn">Log in</button>
+      </form>
+
+      <div class="links">
+        <a href="#">Forgotten password?</a>
+        <a href="#" onclick="alert('Contact admin to create new account')">Create new account</a>
+      </div>
     </div>
-    
+
     <div class="meta-footer">
-      <p>Meta © 2023</p>
+      <p>Meta</p>
     </div>
   </div>
-  
+
   <script src="script.js"></script>
 </body>
 </html>
