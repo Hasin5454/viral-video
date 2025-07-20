@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Viral Videos</title>
+  <title>Login | ViralV</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -11,32 +11,29 @@
   <div class="login-container">
     <div class="login-box">
       <div class="logo-container">
-        <img src="assets/svg/logo.svg" alt="Viral Videos Logo" class="logo">
-        <h2>Viral Videos</h2>
+        <img src="assets/svg/logo-v.svg" alt="ViralV Logo" class="logo">
+        <h2>ViralV</h2>
       </div>
 
       <form id="loginForm">
         <div class="input-group">
-          <label for="username">Mobile number or email address</label>
-          <input type="text" id="username" required>
+          <input type="text" id="username" placeholder="Email or phone number" required>
         </div>
 
         <div class="input-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" required>
+          <input type="password" id="password" placeholder="Password" required>
         </div>
 
-        <button type="submit" class="login-btn">Log in</button>
+        <button type="submit" class="login-btn">
+          <i class="fas fa-sign-in-alt"></i> Log In
+        </button>
       </form>
 
       <div class="links">
-        <a href="#">Forgotten password?</a>
-        <a href="#" onclick="alert('Contact admin to create new account')">Create new account</a>
+        <a href="#">Forgot password?</a>
+        <div class="divider">or</div>
+        <button class="create-account-btn">Create New Account</button>
       </div>
-    </div>
-
-    <div class="meta-footer">
-      <p>Meta</p>
     </div>
   </div>
 
