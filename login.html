@@ -5,38 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - ViralV</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="assets/favicon.ico">
 </head>
 <body>
+  <div class="background-overlay"></div>
+  
   <div class="login-container">
-    <div class="logo-header">
-      <img src="assets/svg/logo.svg" alt="ViralV Logo" class="logo">
-      <h2>ViralV</h2>
+    <div class="logo-container">
+      <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 20 L180 20 L100 180 Z" fill="#ff0000" stroke="#fff" stroke-width="5"/>
+        <text x="100" y="140" font-size="60" text-anchor="middle" fill="#fff" font-weight="bold">V</text>
+      </svg>
+      <h1>ViralV</h1>
     </div>
 
-    <div class="login-box">
-      <form id="loginForm">
-        <div class="input-group">
-          <input type="text" id="username" placeholder="Email or phone number" required>
-        </div>
-
-        <div class="input-group">
-          <input type="password" id="password" placeholder="Password" required>
-        </div>
-
-        <button type="submit" class="login-btn">
-          <i class="fas fa-sign-in-alt"></i> Log In
-        </button>
-      </form>
-
+    <form id="loginForm">
+      <div class="form-group">
+        <input type="text" id="username" placeholder="Username or Email" required>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="login-btn">Log In</button>
       <div class="links">
         <a href="#">Forgot password?</a>
-        <div class="divider">or</div>
-        <button class="signup-btn" onclick="alert('Contact admin for account')">
-          Create New Account
-        </button>
+        <a href="#">Create new account</a>
       </div>
-    </div>
+    </form>
   </div>
 
   <script src="script.js"></script>
